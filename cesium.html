@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Include the CesiumJS JavaScript and CSS files -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <style>
+    html, body, #cesiumContainer {
+      width: 1200px;
+      height: 700px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script type="module">
+    // Your access token can be found at: https://ion.cesium.com/tokens.
+    // Replace `your_access_token` with your Cesium ion access token.
+
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjZDM2ODEyYS04MjgyLTRlMGMtYjliZS03OTk1MGM4NzEwNTkiLCJpZCI6Mzg0NTAzLCJpYXQiOjE3Njk2MjU0MTN9.IJ1vtj1o0Qb7oZkVdE-TgisdVjoC0nfn4e5D6ZmwNZA';
+
+    // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
+    const viewer = new Cesium.Viewer('cesiumContainer', {
+		terrain: Cesium.Terrain.fromWorldTerrain(),
+		animation: false,
+		timeline: false,
+		sceneModePicker: false,
+		fullscreenButton: false
+    });    
+	
+	viewer.clock.currentTime = Cesium.JulianDate.fromDate(
+		new Date('2026-01-01T18:00:00Z')
+	);
+	viewer.clock.shouldAnimate = false;
+	
+	// boton home
+	viewer.homeButton.viewModel.command.beforeExecute.addEventListener(function (e) {
+		e.cancel = true;
+
+		viewer.camera.flyTo({
+			destination: Cesium.Cartesian3.fromDegrees(
+			-102.64356,
+			22.77154,
+			3000
+			)
+		});
+	});
+
+	//Mostrar edificios
+	const buildingsTileset = await Cesium.createOsmBuildingsAsync();
+    viewer.scene.primitives.add(buildingsTileset);
+	
+	
+	buildingsTileset.style = new Cesium.Cesium3DTileStyle({
+	// Create a style rule to control each building's "show" property.
+	show: {
+    conditions : [
+		// Any building that has this elementId will have `show = false`.
+		['${elementId} === 551736822', false],
+		['${elementId} === 1312145133', false],
+		// If a building does not have one of these elementIds, set `show = true`.
+		[true, true]
+		]
+	},
+	// Set the default color style for this particular 3D Tileset.
+	// For any building that has a `cesium#color` property, use that color, otherwise make it white.
+	color: "Boolean(${feature['cesium#color']}) ? color(${feature['cesium#color']}) : color('#ffffff')"
+	});
+	
+	
+	const newBuildingTileset = await Cesium.Cesium3DTileset.fromIonAssetId(4417900);
+    viewer.scene.primitives.add(newBuildingTileset);
+  const newBuilding = await Cesium.Cesium3DTileset.fromIonAssetId(4417896);
+    viewer.scene.primitives.add(newBuilding);
+
+	// Move the camera to the new building.
+	viewer.flyTo(newBuilding);
+	
+	
+  </script>
+ </div>
+</body>
+</html>
