@@ -7,11 +7,12 @@
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   <style>
     html, body, #cesiumContainer {
-      width: 1200px;
-      height: 700px;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
+    	margin:0;
+    }
+
+    #cesiumContainer {
+    	height: 100%;
+    	width: 100%;
     }
   </style>
 </head>
@@ -29,7 +30,13 @@
 		animation: false,
 		timeline: false,
 		sceneModePicker: false,
-		fullscreenButton: false
+		fullscreenButton: false,
+		homeButton: false,
+		infoBox: false,
+		baseLayerPicker: false,
+    navigationHelpButton: false,
+    infoBox: false,
+    selectionIndicator: false
     });    
 	
 	viewer.clock.currentTime = Cesium.JulianDate.fromDate(
@@ -74,11 +81,9 @@
 	
 	const newBuildingTileset = await Cesium.Cesium3DTileset.fromIonAssetId(4417900);
     viewer.scene.primitives.add(newBuildingTileset);
-  const newBuilding = await Cesium.Cesium3DTileset.fromIonAssetId(4417896);
-    viewer.scene.primitives.add(nuevaconstruccion);
 
 	// Move the camera to the new building.
-	viewer.flyTo(nuevaconstruccion);
+	viewer.flyTo(newBuildingTileset);
 	
 	//COMENTARIO PRUEBA
 	
