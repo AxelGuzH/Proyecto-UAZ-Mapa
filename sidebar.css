@@ -1,0 +1,26 @@
+.root{
+
+}
+
+
+body{
+	height: 100vh;
+}
+
+.sidebar{
+	display: flex;
+	justify-content: flex-end;  /* derecha */
+	align-items: flex-start;    /* arriba */
+	padding: 10px;
+ 	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 25%;
+	background: #2b3266
+}
+
+.sidebar .image-text img{
+	width: 40px;
+	border-radius: 6px;
+}
