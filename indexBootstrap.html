@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -7,13 +7,18 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="sidebar.css">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css">
+    <!-- Basic Icons -->
+	<link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+	<!-- Filled Icons -->
+	<link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+	<!-- Brand Icons -->
+	<link href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css" rel="stylesheet">
 
     <style>
-      #map {
-        width: 75vw;
-        height: 75vh;
-      }
+		#map {
+			width: 75vw;
+			height: 75vh;
+		}
     </style>
   </head>
 
@@ -74,17 +79,23 @@
         </script>
       </div>
     </div>
+	
     <div>
-      <header>
-        <div class="sidebar">
-          <header>
-            <div class="image-text">
-              <span class="image">
-                <img src="uaz.png" alt="">
-              </span>
-            </div>
-          </header>
-        </div>
+		<header>
+			<aside class="sidebar">
+				<header>
+					<div class="image-text">
+						<div class="text header-text">
+							<span class="name">Universidad Autonoma De Zacatecas Siglo XII  </span>
+						</div>
+						<span class="image">
+							<img src="uaz.png" alt="">
+						</span>
+					</div>
+					<i class="bx bx-arrow-left-stroke-circle toggle"> </i>
+				</header>
+			</aside>
+		</header>
     </div>
   </body>
 </html>
