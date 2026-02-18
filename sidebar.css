@@ -41,6 +41,28 @@ body{
 	background: var(--side-bar);
 }
 
+.sidebar li{
+	display: flex;
+	align-items: center;
+	height: 50px;
+	margin-top: 10px;
+	list-style: none;
+	text-decoration: none;
+}
+
+.sidebar .search-box{
+}
+
+
+.sidebar li .icon{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--button-color);
+	font-size: 30px;
+	min-width: 40px;
+}
+
 .sidebar .image-text img{
 	width: 45px;
 	border-radius: 6px;
@@ -65,14 +87,14 @@ body{
 .sidebar header .toggle{
 	position: absolute;
 	top: 50%;
-	right: 97%;
-	width: 25px;
-	height: 25px;
-	border-radius: 100%;
+	right: 96%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
 	color: var(--side-color);
 	background: var(--button-color);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 200%;
+	font-size: 350%;
 }
