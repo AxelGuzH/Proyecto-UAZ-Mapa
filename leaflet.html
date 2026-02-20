@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,22 +10,48 @@
 
 
     <style>
-      html, body {
-      height: 100%;
-      margin: 0;
+      .leaflet-popup-content {
+        margin: 0;
       }
 
-      #map {
+      .popup-card {
+      width: 320px;
+      }
+
+      .popup-iframe {
       width: 100%;
-      height: 100%;
+      height: 200px;
+      border: none;
       }
 
+      #card{
+        height: 100vh;
+      }
+
+      html, body, #map {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #viewer {
+        height: 500px;
+      }
+
+      #frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
     </style>
 
   </head>
   <body>
   	<div id="map"></div>
   	<script>
+
+      var etiquetaNomEdi = L.popup();
       var map = L.map('map', {
         center: [22.771495, -102.643982],
         zoom: 16.5
@@ -36,9 +62,115 @@
         subdomains: ['a','b','c']
       }).addTo(map);
 
-      var marker = L.marker([22.773075, -102.644204]).addTo(map);
-      marker.bindTooltip("Ing. Computación/Software");
+      //var marker = L.marker([22.773075, -102.644204]).addTo(map);
+      //marker.bindTooltip("Ing. Computación/Software");
+
+      
+
+      var E_comSoft = L.polygon([
+        [22.77325095189873, -102.64452647199519],
+        [22.773232844250103, -102.6442692064117],
+        [22.773179426673664, -102.64427117027138],
+        [22.773159508249748, -102.6438921454044],
+        [22.77297299923073, -102.64390982013906],
+        [22.772998349985784, -102.64428884500605],
+        [22.77291233847565, -102.64429866430282],
+        [22.772933162312498, -102.64455592988763]
+      ],{
+        color:"blue"
+      }).addTo(map);
+
+      var E_robMec = L.polygon([
+        [22.772624433354608, -102.64455385152621],
+        [22.772263053269626, -102.64456588011016],
+        [22.77224456832964, -102.64420301782638],
+        [22.772606872707797, -102.6441899868605],
+        [22.772624433354608, -102.64455385152621]
+      ],{
+        color:"blue"
+      }).addTo(map);
+
+      var E_posGrad = L.polygon([
+        [22.773334704267754, -102.64359629938758],
+        [22.773093535809167, -102.64361465430511],
+        [22.77305108963961, -102.6428810445279],
+        [22.773243916678993, -102.64286956375683],
+        [22.773261101557523, -102.64323178550366],
+        [22.77331265617886, -102.64322773380623],
+        [22.77331265617886, -102.64322773380623],
+        [22.773334704267754, -102.64359629938758]
+      ],{
+        color:"blue"
+      }).addTo(map);
+
+      
+      function onEdClick() {
+        alert("Clicaste un edificio");
+      }
+
+      //function mouseSobre(e){
+        //color: 'red'
+      //}
+
+      function mouseSobre(e) {
+        var layer = e.target;
+        layer.setStyle({
+          //weight: 5,
+          color: '#666'
+          //dashArray: '',
+          //fillOpacity: 0.7
+        });
+        e.popup()
+             .setContent("I am a standalone popup.")
+             .setLatLng([22.773284, -102.644221])
+             .openOn(map);
+        //.setLatLng(e.latlng)
+        //.setContent("You clicked the map at ")
+        //.openOn(map);
+
+        layer.bringToFront();
+      }
+
+      function mouseFuera(e) {
+        var layer = e.target;
+        layer.setStyle({
+          //weight: 5,
+          color: 'blue'
+          //dashArray: '',
+          //fillOpacity: 0.7
+        });
+
+        layer.bringToFront();
+      }
+
+
+      function onEachFeature(e) {
+          layer.on({
+              mouseover: highlightFeature(e)
+              //mouseout: resetHighlight,
+              //click: zoomToFeature
+          });
+      }
+
+      function sobreEdificio(n){
+        
+      }
+
+
+      function onMapClick(e) {
+        alert("Clicaste un edificio");
+          var popup = e.popup()
+            .setLatLng(latlng)
+            .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+            .openOn(map);
+      }
+
+
+
+      E_comSoft.on('click', onMapClick);
+      E_comSoft.on('mouseover', mouseSobre);
+      E_comSoft.on('mouseout', mouseFuera);
+      
     </script>
- 
   </body>
 </html>
