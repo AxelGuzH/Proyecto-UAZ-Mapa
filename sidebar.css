@@ -134,15 +134,17 @@ body{
 	overflow-x: hidden;
 	scrollbar-color: var(--side-bar) var(--dark-side-bar);
 	border: 2px solid var(--dark-side-bar);
-	
 }
 
 .build-list li{
 	background: var(--side-bar);
 	border: 2px solid var(--dark-side-bar);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .build-list li:hover{
-	background: var(--dark-side-barside-bar);
+	background: var(--dark-side-bar);
 	cursor: pointer;
 }
