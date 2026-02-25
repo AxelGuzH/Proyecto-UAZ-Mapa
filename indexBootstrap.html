@@ -98,31 +98,13 @@
             <div class="menu">
                 <li class="search-box">
                   <i class="bx bx-compass icon"></i>
-                  <input type="search" placeholder="Buscar">
+                  <input type="search" id="buscador" placeholder="Buscar">
                 </li>
             </div>
         </div>
-        <ul class="build-list">
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>hola</li>
-          <li>objeto</li>
-          <li>objeto</li>
+        <ul class="build-list" id="build-list">
+          <li>Ciencias Quimicas</li>
+          <li>Ingenieria de Software E Ingenieria en Computación </li>
           <li>objeto</li>
           <li>objeto</li>
           <li>objeto</li>
@@ -142,10 +124,27 @@
           <li>objeto</li>
           <li>objeto</li>
           <li>objeto</li>
-          <li>objeto</li>
-          <li>hola</li>
           <li>objeto</li>
         </ui>
+        <script>
+            const input = document.getElementById("buscador");
+            const lista = document.getElementById("build-list");
+            const items = lista.getElementsByTagName("li");
+
+            input.addEventListener("keyup", function() {
+                const filtro = input.value.toLowerCase();
+
+                for (let i = 0; i < items.length; i++) {
+                    const texto = items[i].textContent.toLowerCase();
+
+                    if (texto.includes(filtro)) {
+                        items[i].style.display = "";
+                    } else {
+                        items[i].style.display = "none";
+                    }
+                }
+            });
+        </script>
 			</aside>
 		</header>
     </div>
