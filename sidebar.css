@@ -46,8 +46,14 @@ body{
 	z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .sidebar {
+    width: 90%; /* o 100%, lo que necesites */
+  }
+}
+
 .sidebar.close{
-	width: 0px;
+	width: 0%;
 }
 
 .sidebar.close .text,
@@ -171,14 +177,12 @@ body{
 	cursor: pointer;
 }
 
-.data-display{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	padding: 10px 14px;
-	height: 35%;
-	width: 100%;
-	background: wheat;
-	transition: var(--trans-05);
-	z-index: 0;
+.accordion-button {
+  background-color: #273044;
+  color: white;
+}
+
+.accordion-button:hover {
+  background-color: #1e2533;
+  color: #fff;
 }
