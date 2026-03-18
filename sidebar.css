@@ -13,6 +13,8 @@
 	--dark-side-bar: #151a24;
 	--text-color: #d1d1d1;
 	--button-color: #e4bf46;
+
+	--trans-05: all 0.5s ease;
 }
 
 
@@ -40,6 +42,19 @@ body{
 	height: 100%;
 	width: 25%;
 	background: var(--side-bar);
+	transition: var(--trans-05);
+	z-index: 1;
+}
+
+.sidebar.close{
+	width: 0px;
+}
+
+.sidebar.close .text,
+.sidebar.close .image,
+.sidebar.close .menu-bar,
+.sidebar.close .build-list{
+	opacity: 0;
 }
 
 .menu .search-box{
@@ -49,6 +64,7 @@ body{
 	list-style: none;
 	text-decoration: none;
 }
+
 
 .sidebar li{
 	display: flex;
@@ -123,6 +139,12 @@ body{
 	cursor: pointer;
 }
 
+.sidebar .toggle:hover{
+	background: var(--dark-side-bar);
+	color: var(--button-color);
+}
+
+
 .sidebar .build-list{
 	margin-top: 15px;
 	color: white;
@@ -147,4 +169,16 @@ body{
 .build-list li:hover{
 	background: var(--dark-side-bar);
 	cursor: pointer;
+}
+
+.data-display{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: 10px 14px;
+	height: 35%;
+	width: 100%;
+	background: wheat;
+	transition: var(--trans-05);
+	z-index: 0;
 }

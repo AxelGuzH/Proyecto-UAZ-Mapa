@@ -17,46 +17,12 @@
     <style>
 		#map {
 			width: 75vw;
-			height: 75vh;
+			height: 65vh;
 		}
     </style>
   </head>
 
   <body>
-    <!-- Barra de navegación-->   
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">UAZ</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-             <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        </div>
-      </div>
-    </nav>
-
     <div class="container-fluid" >
       <div class="row" style="position: relative;">
         <iframe id="map" src="leaflet.html"></iframe>
@@ -103,35 +69,13 @@
             </div>
         </div>
         <ul class="build-list" id="build-list">
-          <li>Ciencias Quimicas</li>
-          <li>Ingenieria de Software E Ingenieria en Computación </li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-          <li>objeto</li>
-        </ui>
+        </ul>
         <script>
             const input = document.getElementById("buscador");
             const lista = document.getElementById("build-list");
             const items = lista.getElementsByTagName("li");
 
-            input.addEventListener("keyup", function() {
+              input.addEventListener("keyup", function() {
                 const filtro = input.value.toLowerCase();
 
                 for (let i = 0; i < items.length; i++) {
@@ -144,9 +88,42 @@
                     }
                 }
             });
+
+            fetch("edificios.php")
+            .then(response => response.json())
+            .then(data => {
+
+              const ul = document.getElementById("build-list");
+
+              data.features.forEach(edificio => {
+              const li = document.createElement("li");
+              li.textContent = edificio.properties.NOMBRE;
+
+              ul.appendChild(li);
+              });
+            });
+            
+            const body = document.querySelector("body"),
+                  sidebar = body.querySelector(".sidebar"),
+                  toggle = body.querySelector(".toggle"),
+                  searchBtn = body.querySelector(".search-box"),
+                  map = document.getElementById("map");
+
+            
+            toggle.addEventListener("click", () =>{
+              sidebar.classList.toggle("close");
+              map.style.width = sidebar.classList.contains("close") ? "100vw" : "75vw";
+            });
         </script>
 			</aside>
 		</header>
+    </div>
+    <div>
+      <div class ="data-display">
+        <ul class="list-group">
+        </ul>
+      </div>
+      </class>
     </div>
   </body>
 </html>

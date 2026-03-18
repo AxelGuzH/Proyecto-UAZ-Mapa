@@ -76,8 +76,11 @@
 	const newBuildingTileset = await Cesium.Cesium3DTileset.fromIonAssetId(4417900);
     viewer.scene.primitives.add(newBuildingTileset);
 
+  const robotica = await Cesium.Cesium3DTileset.fromIonAssetId(4500591);
+    viewer.scene.primitives.add(robotica);
+
 	// Move the camera to the new building.
-	viewer.flyTo(newBuildingTileset);
+	viewer.flyTo(robotica);
 	
 	//COMENTARIO PRUEBA
 	
